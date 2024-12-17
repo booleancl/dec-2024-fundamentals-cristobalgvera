@@ -2,26 +2,25 @@
   Las Funciones en Javascript pueden ser tratadas como cualquier tipo de dato. Por ejemplo pueden ser parte de un arreglo.
 */
 
-export function useCallbacksAsDataType() {
+export function useCallbacksAsDataType () {
+  const chainProcesses = function (callbacks) {
+    let word = ''
 
-  var chainProcesses = function(callbacks) {
-    var word = ''
-
-    for (var index = 0; index < callbacks.length; index++) {
-      var actualProcess = callbacks[index]
+    for (let index = 0; index < callbacks.length; index++) {
+      const actualProcess = callbacks[index]
       word += actualProcess()
     }
 
     return word
   }
-  var processes = [
-    function(){
-      return 'Callbacks';
+  const processes = [
+    function () {
+      return 'Callbacks'
     },
-    function(){
+    function () {
       return 'are'
     },
-    function(){
+    function () {
       return 'powerful'
     }
   ]
@@ -38,9 +37,8 @@ export function useCallbacksAsDataType() {
 */
 
 // forEach ... sirve para iterar un array pero no hacer modificaciones en él
-export function forEach(array, callback) {
-  
-  for(var index = 0; index < array.length; index++) {
+export function forEach (array, callback) {
+  for (let index = 0; index < array.length; index++) {
     // algo falta acá. la idea de delegar esta operación es que la función tenga disponible los argumentos necesarios para llevar a cabo su responsabilidad.
     var actualValue
     var actualIndex

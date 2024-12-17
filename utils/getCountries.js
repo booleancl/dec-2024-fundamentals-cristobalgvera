@@ -6,7 +6,7 @@
 
   retorna una promesa usando el método fetch
 */
-export function getCountries() {
+export function getCountries () {
   const endpointURL = 'https://restcountries.com/v3.1/subregion/South%20America'
 
   return fetch(endpointURL)

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest' 
+import { describe, it, expect } from 'vitest'
 import {
   returnValuesWithPromise,
   rejectValuesWithPromise,
@@ -24,7 +24,7 @@ describe('Promises', () => {
   it('03 - returns a value from second promise related to the first one', async () => {
     const returnValue = await returnValuesWithRelatedPromises()
 
-    expect(returnValue).toEqual({ results: 'User without benefits'})
+    expect(returnValue).toEqual({ results: 'User without benefits' })
   })
 
   it('04 - returns an array with results of multiple promises', async () => {
@@ -32,7 +32,7 @@ describe('Promises', () => {
 
     expect(returnValue).toEqual([
       { id: 1, name: 'Eli', benefitsId: 10 },
-      { results: 'User without benefits'}
+      { results: 'User without benefits' }
     ])
   })
 

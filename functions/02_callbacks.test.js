@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest' 
+import { describe, it, expect, vi } from 'vitest'
 import {
   useCallbacksAsDataType,
   forEach
@@ -9,7 +9,7 @@ describe('Callbacks', () => {
     expect(useCallbacksAsDataType()).toEqual('Callbacks are powerful')
   })
 
-  it('02 - callback is called in iterations with arguments',() => {
+  it('02 - callback is called in iterations with arguments', () => {
     const array = [1, 2, 3]
     const spy = vi.fn()
 

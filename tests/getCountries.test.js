@@ -12,7 +12,6 @@ describe('Get South America countries using getCountries function', () => {
     // Act
 
     // Assert
-
   })
 
   // Sad path 🙁
@@ -25,6 +24,5 @@ describe('Get South America countries using getCountries function', () => {
     // Act
 
     // Assert
-
   })
 })

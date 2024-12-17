@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest' 
+import { describe, it, expect } from 'vitest'
 import {
   namedFunctions,
   expressionFunctions
@@ -8,11 +8,11 @@ describe('Functions', () => {
   const {
     normalFunction,
     anonymousFunction
-  } = namedFunctions();
+  } = namedFunctions()
 
   it('01 - functions can be declared in different ways and always set the name property even in "anonymous" functions', () => {
     expect(normalFunction.constructor).toBe(Function)
-    
+
     expect(normalFunction.name).toEqual('normalFunction')
     expect(typeof normalFunction).toEqual('function')
     expect(anonymousFunction.name).toEqual('anonymousFunction')
@@ -20,7 +20,7 @@ describe('Functions', () => {
   })
 
   it('02 - functions are declared as expressions get empty string name', () => {
-    const anonymousFunction = expressionFunctions();
+    const anonymousFunction = expressionFunctions()
 
     expect(anonymousFunction.name).toEqual('')
     expect(typeof anonymousFunction).toEqual('function')
