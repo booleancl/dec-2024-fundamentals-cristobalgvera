@@ -1,0 +1,50 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Functions
+      id: functions
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Functions
+        setup-command: npm install
+        command: npm run test:ci functions/01_naming.test.js
+        timeout: 10
+        max-score: 30
+    - name: Callbacks
+      id: callbacks
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Callbacks
+        setup-command: npm install
+        command: npm run test:ci functions/02_callbacks.test.js
+        timeout: 10
+        max-score: 30
+    - name: Promises
+      id: promises
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Promises
+        setup-command: npm install
+        command: npm run test:ci promises
+        timeout: 10
+        max-score: 40
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        FUNCTIONS_RESULTS: "${{steps.functions.outputs.result}}"
+        CALLBACKS_RESULTS: "${{steps.callbacks.outputs.result}}"
+        PROMISES_RESULTS: "${{steps.promises.outputs.result}}"
+      with:
+        runners: functions,callbacks,promises
