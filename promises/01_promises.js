@@ -17,19 +17,19 @@ export function returnValuesWithPromise () {
     resolve('success value')
   })
 
-  return promise
-    // .then() retorna la misma promesa.
-    .then(function (value) {
-      console.log('Valor exitoso 1', value)
-    })
-    // Podemos seguir encadenando más .then()
-    // ¿Ambos .then() recibirán el mismo valor?
-    // .then(function (value) {
-    //   console.log('Valor exitoso 2', value)
-    // })
+  // return promise
+  //   // .then() retorna la misma promesa.
+  //   .then(function (value) {
+  //     console.log('Valor exitoso 1', value)
+  //   })
+  // Podemos seguir encadenando más .then()
+  // ¿Ambos .then() recibirán el mismo valor?
+  // .then(function (value){
+  //   console.log('Valor exitoso 2', value)
+  // })
 
   // si comentamos el return anterior pero concatenando los .then
-  // return promise
+  return promise
 }
 
 export function rejectValuesWithPromise () {
@@ -48,24 +48,24 @@ export function rejectValuesWithPromise () {
   return promise
     //  .catch() retorna una NUEVA promesa.
     .catch(function (error) {
-      console.log('Valor fallido 1', error.message)
+      // console.log('Valor fallido 1', error.message)
       // Una vez que se envia un valor de retorno en un .catch este ya no genera expeciones por lo tanto ahora este valor activara los callbacks en .then
-      // return {
-      //   message: error.message
-      // }
+      return {
+        message: error.message
+      }
       // return error
     })
-    //  Podemos segurir encadenando más .catch()?
-    // .then(function(value){
-    //   console.log(value);
-    //   return value
-    // })
-    // .catch(function (error) {
-    //   console.log('Valor fallido 2', error)
-    //   return {
-    //     message: error.message
-    //   }
-    // })
+  //  Podemos segurir encadenando más .catch()?
+  // .then(function(value){
+  //   console.log(value);
+  //   return value
+  // })
+  // .catch(function (error){
+  //   console.log('Valor fallido 2', error)
+  //   return {
+  //     message: error.message
+  //   }
+  // })
 }
 
 export function returnValuesWithRelatedPromises () {
@@ -80,14 +80,14 @@ export function returnValuesWithRelatedPromises () {
   const userId = 1
   return getUserInfo(userId)
     .then(function (response) {
-      console.log('Primer resultado', response)
+      // console.log('Primer resultado', response)
 
       // De ahora en adelante los siguientes .then() serán relacionados a esta promesa.
       return getUserBenefits(response.benefitsId)
     })
     .then(function (response) {
-      console.log('Segundo resultado', response)
-      //  return response
+      // console.log('Segundo resultado', response)
+      return response
     })
 }
 
@@ -109,9 +109,9 @@ export function returnValuesWithParallelPromises () {
   ]
 
   return Promise.all(requestsList)
-    .then(function (results) {
-      console.log('Resolved values as array', results)
-    })
+  // .then(function (results) {
+  //   console.log('Resolved values as array', results)
+  // })
 }
 
 export function returnValuesFirstOtherPromises () {
@@ -126,14 +126,14 @@ export function returnValuesFirstOtherPromises () {
     })
   }
   const getUserInfoFromAnotherServer = function (userId) {
-    // return new Promise(function (resolve) {
-    //   setTimeout(function () {
-    //     resolve({ id: 1, name: 'Eli', serverName: 'server2' })
-    //   } , 1500)
-    // })
-    return Promise.resolve(
-      { id: 1, name: 'Eli', serverName: 'server2' }
-    )
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve({ id: 1, name: 'Eli', serverName: 'server2' })
+      }, 1500)
+    })
+    // return Promise.resolve(
+    //   { id: 1, name: 'Eli', serverName: 'server2' }
+    // )
   }
 
   const userId = 1
@@ -144,7 +144,7 @@ export function returnValuesFirstOtherPromises () {
 
   return Promise.race(requestsList)
     .then(function (response) {
-      console.log('Resolved the first value returned', response)
+      // console.log('Resolved the first value returned', response)
       return response
     })
 }
