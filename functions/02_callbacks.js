@@ -4,15 +4,16 @@
 
 export function useCallbacksAsDataType () {
   const chainProcesses = function (callbacks) {
-    let word = ''
+    const words = []
 
     for (let index = 0; index < callbacks.length; index++) {
       const actualProcess = callbacks[index]
-      word += actualProcess()
+      words.push(actualProcess())
     }
 
-    return word
+    return words.join(' ')
   }
+
   const processes = [
     function () {
       return 'Callbacks'
@@ -24,6 +25,7 @@ export function useCallbacksAsDataType () {
       return 'powerful'
     }
   ]
+
   return chainProcesses(processes)
 }
 
@@ -40,8 +42,8 @@ export function useCallbacksAsDataType () {
 export function forEach (array, callback) {
   for (let index = 0; index < array.length; index++) {
     // algo falta acá. la idea de delegar esta operación es que la función tenga disponible los argumentos necesarios para llevar a cabo su responsabilidad.
-    var actualValue
-    var actualIndex
+    const actualValue = array[index]
+    const actualIndex = index
     callback(actualValue, actualIndex)
   }
 }

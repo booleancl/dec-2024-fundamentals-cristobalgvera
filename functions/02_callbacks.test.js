@@ -15,12 +15,9 @@ describe('Callbacks', () => {
 
     forEach(array, spy)
 
-    expect(spy).toHaveBeenCalledWith(array[0], 0)
-    expect(spy).toHaveBeenCalledWith(array[1], 1)
-    expect(spy).toHaveBeenCalledWith(array[2], 2)
-    // expect(spy).toHaveBeenNthCalledWith(1, 1, 0)
-    // expect(spy).toHaveBeenNthCalledWith(2, 2, 1)
-    // expect(spy).toHaveBeenNthCalledWith(3, 3, 2)
-    // expect(spy).toHaveBeenCalledTimes(3)
+    expect(spy).toHaveBeenCalledTimes(array.length)
+    array.forEach((value, index) => {
+      expect(spy).toHaveBeenNthCalledWith(index + 1, value, index)
+    })
   })
 })
