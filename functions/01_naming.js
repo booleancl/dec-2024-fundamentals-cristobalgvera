@@ -3,13 +3,13 @@
   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 */
 
-export function namedFunctions() {
+export function namedFunctions () {
   // ¿Que raro? No falla al ejecutar la función antes de declararla ¿Por qué?
 
   normalFunction()
 
   // Función declarada de la forma "clásica"
-  function normalFunction() {
+  function normalFunction () {
     // ... acá va la lógica
   }
 
@@ -31,7 +31,7 @@ export function namedFunctions() {
   //  Escrita como "expresión" no provoca error
   //  Analizaremos luego que son las expresiones
 
-  (function () { })
+  // (function () { })
 
   // La función "anónima" en la propiedad 'name' asignará el nombre de la variable.
 
@@ -39,17 +39,17 @@ export function namedFunctions() {
 
   // anonymous()
 
-  var anonymous = function () { }
+  const anonymous = function () { }
 
   return {
     normalFunction,
-    anonymousFunction: anonymous
+    anonymousFunction: () => anonymous()
     // lo anterior es igual a esto por eso pasa la prueba
     // anonymousFunction: function () {}
   }
 }
 
-export function expressionFunctions() {
+export function expressionFunctions () {
   /*
     Se considera expresion a lo escrito
       - al lado derecho del return
@@ -92,6 +92,6 @@ export function expressionFunctions() {
     https://developer.mozilla.org/en-US/docs/Glossary/IIFE#the_module_pattern
   */
 
-  // return function(){}
-  return function named() { }
+  return function () { }
+  // return function named() { }
 }
